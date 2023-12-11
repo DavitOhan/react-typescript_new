@@ -1,6 +1,11 @@
 import { InputProps } from "./types";
 
-import { InputContainer, InputLabel, InputComponent } from "./styles";
+import {
+  InputContainer,
+  InputLabel,
+  InputComponent,
+  ErrorContainer,
+} from "./styles";
 
 function Input({
   disabled,
@@ -10,6 +15,7 @@ function Input({
   value,
   onChange,
   type,
+  error = undefined,
 }: InputProps) {
   const inputId = `${name}-${Math.random()}`;
 
@@ -17,6 +23,7 @@ function Input({
     <InputContainer>
       <InputLabel htmlFor={inputId}>{labelName}</InputLabel>
       <InputComponent
+        $error={error}
         type={type}
         value={value}
         onChange={onChange}
@@ -25,6 +32,7 @@ function Input({
         disabled={disabled}
         placeholder={placeholder}
       />
+      <ErrorContainer>{error}</ErrorContainer>
     </InputContainer>
   );
 }
